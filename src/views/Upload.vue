@@ -127,9 +127,10 @@
 <style scoped>
     .card-container {
         display: flex;
-        justify-content: flex-start; /* 向左对齐 */
+        justify-content: center;
+        justify-content: flex-start;
         padding: 20px;
-        margin-left: 20%;
+        margin-left: 5%;
     }
 
     .card {
