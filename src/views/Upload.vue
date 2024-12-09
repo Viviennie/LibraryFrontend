@@ -128,19 +128,18 @@
     .card-container {
         display: flex;
         justify-content: center;
-        justify-content: flex-start;
         padding: 20px;
-        margin-left: 5%;
+        margin-left: 0%;
     }
 
     .card {
         width: 100%;
         max-width: 800px;
         background-color: #ffffff;
-        padding: 20px;
+        padding: 50px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-left: 20px;
+        margin-left: 0px;
     }
 
     h1 {
