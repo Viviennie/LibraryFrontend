@@ -31,12 +31,18 @@
                 <!-- 书籍状态按钮 -->
                 <div class="form-group inline-input">
                     <label for="status">书籍状态：</label>
-                    <el-button :type="status === 'draft' ? 'primary' : 'default'"
-                               @click="status = 'draft'"
-                               class="status-btn">草稿</el-button>
-                    <el-button :type="status === 'published' ? 'primary' : 'default'"
-                               @click="status = 'published'"
-                               class="status-btn">已发布</el-button>
+                    <el-button
+                        :type="status === 'draft' ? 'primary' : 'default'"
+                        :class="{ 'is-active': status === 'draft' }"
+                        @click="status = 'draft'"
+                        class="status-btn"
+                    >草稿</el-button>
+                    <el-button
+                        :type="status === 'published' ? 'primary' : 'default'"
+                        :class="{ 'is-active': status === 'published' }"
+                        @click="status = 'published'"
+                        class="status-btn"
+                    >已发布</el-button>
                 </div>
 
                 <!-- 书籍简介：保持输入框一致的样式，放在同一行 -->
@@ -50,7 +56,6 @@
                     <label for="cover">封面上传：</label>
                     <input type="file" id="cover" ref="cover" @change="handleCoverChange" v-if="!coverUrl" />
                     <div v-if="coverUrl" class="cover-preview">
-                        <h4>封面预览：</h4>
                         <img :src="coverUrl" alt="封面预览" width="150" />
                         <button type="button" class="remove-cover" @click="removeCover">×</button>
                     </div>
@@ -124,6 +129,7 @@
         display: flex;
         justify-content: flex-start; /* 向左对齐 */
         padding: 20px;
+        margin-left: 20%;
     }
 
     .card {
@@ -133,7 +139,7 @@
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-left: 20px; /* 调整卡片位置，向左偏移 */
+        margin-left: 20px;
     }
 
     h1 {
@@ -207,6 +213,15 @@
     .cover-preview {
         position: relative;
         display: inline-block;
+        margin-right: 500px;  /* 给封面预览添加左边距，确保不与输入框重叠 */
+        width: 150px;  /* 设置预览容器的固定宽度 */
+        height: 150px;  /* 设置固定高度 */
+    }
+    
+    .cover-preview img {
+        width: 100%;  /* 图片宽度填满父容器 */
+        height: 100%;  /* 图片高度填满父容器 */
+        object-fit: cover;  /* 保持图片比例，裁剪多余部分 */
     }
 
     .remove-cover {
@@ -224,40 +239,30 @@
 
     /* 默认按钮样式 */
     .status-btn {
-        margin-right: 10px;
         border-radius: 4px;
-        border: 1px solid #ccc;
+        padding: 10px;
+        border: 1px solid #ccc; /* 默认边框 */
         background-color: white;
         color: black;
-        width: 120px; /* 设置按钮宽度，可以根据需要调整 */
+        width: 320px;
         transition: all 0.3s ease;
+        outline: none; /* 去掉焦点时的轮廓 */
+}
+
+    .status-btn:hover {
+        background-color:   #B3E5FC; /* 悬停背景色 */
+        border-color:#B3E5FC; /* 鼠标悬停时边框颜色 */
     }
 
-        /* 悬停时的背景色 */
-        .status-btn:hover {
-            background-color: #B3E5FC; /* 悬停背景色 */
-            border-color: #81D4FA; /* 鼠标悬停时边框颜色 */
-        }
+    .status-btn.is-active {
+        background-color: #81D4FA; /* 选中时背景色 */
+        color: black;  /* 选中时的文字颜色 */
+        border: none; /* 去掉选中后的边框 */
+    }
 
-        /* 按钮选中时的背景色 */
-        .status-btn.is-active {
-            background-color: #81D4FA; /* 选中时背景色 */
-            color: black;
-        }
-
-        /* 草稿按钮 */
-        .status-btn.draft-btn {
-            border-color: #409EFF;
-        }
-
-        /* 已发布按钮 */
-        .status-btn.published-btn {
-            border-color: #66BB6A;
-        }
-
-        /* 按钮的点击状态时（按下去的颜色） */
-        .status-btn:active {
-            background-color: #81D4FA; /* 点击时的背景色 */
-        }
+    .status-btn:active {
+        background-color: #81D4FA; /* 点击时的背景色 */
+        border-color: #81D4FA; /* 保持选中时的边框颜色 */
+    }
 
 </style>
