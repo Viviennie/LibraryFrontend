@@ -39,7 +39,7 @@
     .sidebar {
         width: 230px;
         height: 100vh;
-        background-color: #F0F8FF; /* 设置背景颜色为 Alice Blue */
+        background-color: #F0F8FF;
         color: #F0F8FF;
         position: fixed;
         left: 0;
